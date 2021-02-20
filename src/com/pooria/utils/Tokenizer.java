@@ -8,6 +8,22 @@ public class Tokenizer {
         return c >= '0' && c <= '9';
     }
 
+    public static boolean isLeftParenthesis(char c) {
+        return c == '(';
+    }
+
+    public static boolean isRightParenthesis(char c) {
+        return c == ')';
+    }
+
+    public static boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '\\' || c == '^';
+    }
+
+    public static boolean isLetter(char c) {
+        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+    }
+
     public static ArrayList<Token> tokenize(String expression) {
         ArrayList<Token> ans = new ArrayList<>();
 
