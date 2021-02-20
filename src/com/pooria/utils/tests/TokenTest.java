@@ -1,4 +1,6 @@
-package com.pooria.utils;
+package com.pooria.utils.tests;
+
+import com.pooria.utils.Token;
 
 import static org.junit.jupiter.api.Assertions.*;
 
