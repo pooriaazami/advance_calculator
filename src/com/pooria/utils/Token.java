@@ -76,4 +76,13 @@ public class Token implements Comparable {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "value='" + value + '\'' +
+                ", priorities=" + priorities +
+                ", type=" + type +
+                '}';
+    }
 }

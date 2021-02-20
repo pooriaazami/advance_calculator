@@ -47,6 +47,7 @@ public class Tokenizer {
                 ans.add(new Token(String.valueOf(expression.charAt(i)), Token.Priorities.PARENTHESES));
             } else if (isOperator(expression.charAt(i))) {
                 processBuffer(buffer, isBufferNumeric, ans);
+                buffer = "";
                 switch (expression.charAt(i)) {
                     case '+' -> ans.add(new Token("+", Token.Priorities.SUM));
                     case '-' -> ans.add(new Token("-", Token.Priorities.SUM));
@@ -55,9 +56,15 @@ public class Tokenizer {
                     case '^' -> ans.add(new Token("^", Token.Priorities.FUNCTION));
                 }
             } else if (isLetter(expression.charAt(i))) {
+                if (buffer.length() > 0 && isBufferNumeric)
+                    throw new IllegalArgumentException("Invalid expression");
+
                 buffer += expression.charAt(i);
                 isBufferNumeric = false;
             } else if (isNumber(expression.charAt(i))) {
+                if (buffer.length() > 0 && !isBufferNumeric)
+                    throw new IllegalArgumentException("Invalid expression");
+
                 buffer += expression.charAt(i);
                 isBufferNumeric = true;
             } else {
