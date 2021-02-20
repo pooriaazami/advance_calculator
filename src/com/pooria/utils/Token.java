@@ -1,5 +1,5 @@
 package com.pooria.utils;
 
-public class Tokenizer {
+public class Token {
 
 }
