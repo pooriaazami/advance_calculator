@@ -35,7 +35,7 @@ public class Token implements Comparable {
 
 
     public enum Priorities {
-        FUNCTION(1), PRODUCT(2), SUM(3), PARENTHESES(4);
+        FUNCTION(1), PRODUCT(2), SUM(3), NUMBER(4), PARENTHESES(5);
 
         private int value;
 
