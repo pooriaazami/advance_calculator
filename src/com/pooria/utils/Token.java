@@ -6,7 +6,6 @@ public class Token implements Comparable {
     private final Priorities priorities;
     private final Type type;
 
-
     public Token(String value, Priorities priorities) {
         this.value = value;
         this.priorities = priorities;
@@ -15,6 +14,18 @@ public class Token implements Comparable {
             this.type = Type.NUMBER;
         else
             this.type = Type.FUNCTION;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public Priorities getPriorities() {
+        return priorities;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     @Override
@@ -28,9 +39,9 @@ public class Token implements Comparable {
             throw new IllegalArgumentException("You can only compare tokens with same type");
         }
 
-        if (this.type.getValue() < token.type.getValue())
+        if (this.getPriorities().getValue() < token.getPriorities().getValue())
             return 1;
-        else if (this.type.getValue() > token.type.getValue())
+        else if (this.getPriorities().getValue() > token.getPriorities().getValue())
             return -1;
 
         return 0;
@@ -48,7 +59,7 @@ public class Token implements Comparable {
         }
 
         public int getValue() {
-            return value;
+            return this.value;
         }
     }
 
@@ -61,7 +72,7 @@ public class Token implements Comparable {
         }
 
         public int getValue() {
-            return value;
+            return this.value;
         }
 
     }
