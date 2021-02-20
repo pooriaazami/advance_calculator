@@ -63,7 +63,7 @@ public class Token implements Comparable {
         }
     }
 
-    enum Type {
+    private enum Type {
         NUMBER(1), FUNCTION(2);
         private int value;
 
