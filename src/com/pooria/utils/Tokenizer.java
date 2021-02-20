@@ -37,6 +37,10 @@ public class Tokenizer {
         boolean isBufferNumeric = true;
         int len = expression.length();
         for (int i = 0; i < len; i++) {
+
+            if (expression.charAt(i) == ' ')
+                continue;
+
             if (isParenthesis(expression.charAt(i))) {
                 processBuffer(buffer, isBufferNumeric, ans);
                 buffer = "";
