@@ -11,8 +11,8 @@ class TokenTest {
 
     @org.junit.jupiter.api.Test
     void compareTo() {
-        Token t1 = new Token("1", Token.Priorities.SUM, Token.Type.NUMBER);
-
+        Token t1 = new Token("1", Token.Priorities.NUMBER);
+        Token t2 = new Token("*", Token.Priorities.PRODUCT);
 
     }
 }

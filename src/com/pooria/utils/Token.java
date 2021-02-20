@@ -7,10 +7,14 @@ public class Token implements Comparable {
     private final Type type;
 
 
-    public Token(String value, Priorities priorities, Type type) {
+    public Token(String value, Priorities priorities) {
         this.value = value;
         this.priorities = priorities;
-        this.type = type;
+
+        if (priorities == Priorities.NUMBER)
+            this.type = Type.NUMBER;
+        else
+            this.type = Type.FUNCTION;
     }
 
     @Override
