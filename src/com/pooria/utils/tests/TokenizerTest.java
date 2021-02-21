@@ -47,12 +47,12 @@ class TokenizerTest {
         tokenizedExpression2.add(new Token("35.6", Token.Priorities.NUMBER));
         tokenizedExpression2.add(new Token(")", Token.Priorities.PARENTHESES));
         tokenizedExpression2.add(new Token("+", Token.Priorities.SUM));
-        tokenizedExpression2.add(new Token("pi", Token.Priorities.FUNCTION));
+        tokenizedExpression2.add(new Token("pi", Token.Priorities.NUMBER));
 
         //e + pi
-        tokenizedExpression3.add(new Token("e", Token.Priorities.FUNCTION));
+        tokenizedExpression3.add(new Token("e", Token.Priorities.NUMBER));
         tokenizedExpression3.add(new Token("+", Token.Priorities.SUM));
-        tokenizedExpression3.add(new Token("pi", Token.Priorities.FUNCTION));
+        tokenizedExpression3.add(new Token("pi", Token.Priorities.NUMBER));
 
     }
 
@@ -141,7 +141,6 @@ class TokenizerTest {
         var iterator2 = l2.listIterator();
 
         while (iterator1.hasNext()) {
-            System.out.println();
             if (iterator1.next().compareTo(iterator2.next()) != 0)
                 return false;
         }
