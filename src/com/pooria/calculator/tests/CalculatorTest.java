@@ -122,4 +122,27 @@ class CalculatorTest {
         ArrayList<Token> ans4 = Calculator.translateToPostOrder(inOrderExpression4);
         assertTrue(compareLists(ans4, postOrderExpression4));
     }
+
+    @Test
+    void calculate() {
+        assertEquals(3, Calculator.calculate("1+2"));
+        assertEquals(2, Calculator.calculate("1*2"));
+        assertEquals(-2, Calculator.calculate("-1*2"));
+        assertEquals(5, Calculator.calculate("2.5*2"));
+        assertEquals(-5, Calculator.calculate("2.5*-2"));
+        assertEquals(-5, Calculator.calculate("-2.5*2"));
+        assertEquals(5, Calculator.calculate("-2.5*-2"));
+        assertEquals(1.2246467991473532e-16, Calculator.calculate("sin(pi)"));
+        assertEquals(-1, Calculator.calculate("cos(pi)"));
+        assertEquals(-1, Calculator.calculate("cos(pi)"));
+        assertEquals(-1.2246467991473532e-16, Calculator.calculate("tan(pi)"));
+        assertEquals(-8165619676597685.0, Calculator.calculate("cot(pi)"));
+        assertEquals(0.5143952585235492, Calculator.calculate("sin(cos(1))"));
+        assertEquals(8, Calculator.calculate("2^3"));
+        assertEquals(1.4142135623730951, Calculator.calculate("2^0.5"));
+        assertEquals(1.4142135623730951, Calculator.calculate("sqrt(2)"));
+        assertEquals(168, Calculator.calculate("2*3^4+6"));
+        assertEquals(156, Calculator.calculate("2*3^4-6"));
+        assertEquals(-4.665196069449206e+31, Calculator.calculate("12+(25.678/238+ln(12.5)*sin(e+pi)/23.78^-23)"));
+    }
 }
