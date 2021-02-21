@@ -7,14 +7,6 @@ import java.util.Stack;
 
 public class Calculator {
 
-    private static boolean isLeftParenthesis(Token t) {
-        return t.compareTo(new Token("(", Token.Priorities.PARENTHESES)) == 0;
-    }
-
-    private static boolean isRightParenthesis(Token t) {
-        return t.compareTo(new Token(")", Token.Priorities.PARENTHESES)) == 0;
-    }
-
     public static ArrayList<Token> translateToPostOrder(ArrayList<Token> inOrder) {
         ArrayList<Token> ans = new ArrayList<>();
         Stack<Token> stack = new Stack<>();
@@ -26,8 +18,24 @@ public class Calculator {
             if (current.isNumber()) {
                 ans.add(current);
             } else {
-
+                if (current.isRightParenthesis()) {
+                    while (!stack.peek().isLeftParenthesis() && stack.size() > 0) {
+                        ans.add(stack.pop());
+                    }
+                } else {
+                    if (current.compareTo(stack.peek()) == 1 && stack.size() > 0) {
+                        while (current.compareTo(stack.peek()) == 1 && stack.size() > 0) {
+                            ans.add(stack.pop());
+                        }
+                    } else {
+                        stack.push(current);
+                    }
+                }
             }
+        }
+
+        while (stack.size() > 0) {
+            ans.add(stack.pop());
         }
 
         return ans;
