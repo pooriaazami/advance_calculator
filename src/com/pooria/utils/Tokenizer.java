@@ -13,7 +13,7 @@ public class Tokenizer {
     }
 
     public static boolean isOperator(char c) {
-        return c == '+' || c == '-' || c == '*' || c == '\\' || c == '^';
+        return c == '+' || c == '-' || c == '*' || c == '\\' || c == '^' || c == '/';
     }
 
     public static boolean isLetter(char c) {
@@ -61,7 +61,7 @@ public class Tokenizer {
                     case '+' -> ans.add(new Token("+", Token.Priorities.SUM));
                     case '-' -> ans.add(new Token("-", Token.Priorities.SUM));
                     case '*' -> ans.add(new Token("*", Token.Priorities.PRODUCT));
-                    case '\\' -> ans.add(new Token("\\", Token.Priorities.PRODUCT));
+                    case '/', '\\' -> ans.add(new Token("\\", Token.Priorities.PRODUCT));
                     case '^' -> ans.add(new Token("^", Token.Priorities.FUNCTION));
                 }
             } else if (isLetter(expression.charAt(i))) {
