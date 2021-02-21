@@ -48,6 +48,10 @@ public class Token implements Comparable {
 
     }
 
+    public boolean isNumber() {
+        return this.type.value == Type.NUMBER.value;
+    }
+
 
     public enum Priorities {
         FUNCTION(1), PRODUCT(2), SUM(3), NUMBER(4), PARENTHESES(5);
@@ -71,9 +75,6 @@ public class Token implements Comparable {
             this.value = value;
         }
 
-        public int getValue() {
-            return this.value;
-        }
 
     }
 
