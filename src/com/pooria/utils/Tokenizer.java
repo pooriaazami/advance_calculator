@@ -21,12 +21,19 @@ public class Tokenizer {
     }
 
     private static void processBuffer(String buffer, boolean isBufferNumeric, ArrayList<Token> tokens) {
-        if (buffer.length() > 0) {
-            if (isBufferNumeric) {
-                tokens.add(new Token(buffer, Token.Priorities.NUMBER));
-            } else {
-                tokens.add(new Token(buffer, Token.Priorities.FUNCTION));
-            }
+        if (buffer.equals("pi")) {
+            tokens.add(new Token("3.141592653589793", Token.Priorities.NUMBER));
+            return;
+        }
+        if (buffer.equals("e")) {
+            tokens.add(new Token("2.718281828459045", Token.Priorities.NUMBER));
+            return;
+        }
+
+        if (isBufferNumeric) {
+            tokens.add(new Token(buffer, Token.Priorities.NUMBER));
+        } else {
+            tokens.add(new Token(buffer, Token.Priorities.FUNCTION));
         }
     }
 
