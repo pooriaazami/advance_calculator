@@ -143,6 +143,11 @@ class CalculatorTest {
         assertEquals(1.4142135623730951, Calculator.calculate("sqrt(2)"));
         assertEquals(168, Calculator.calculate("2*3^4+6"));
         assertEquals(156, Calculator.calculate("2*3^4-6"));
-        assertEquals(-4.665196069449206e+31, Calculator.calculate("12+(25.678/238+ln(12.5)*sin(e+pi)/23.78^-23)"));
+        assertEquals(-4.665196069449206e+31, Calculator.calculate(
+                "12+(25.678/238+ln(12.5)*sin(e+pi)/23.78^-23)"));
+        assertEquals(10.000000000000002, Calculator.calculate("exp(ln(10))"));
+        assertEquals(3, Calculator.calculate("log(1000)"));
+        assertEquals(125, Calculator.calculate("(10/2)^3"));
+        assertEquals(125, Calculator.calculate("(10^3/2^3)"));
     }
 }
