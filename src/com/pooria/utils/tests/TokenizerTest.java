@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,16 +18,25 @@ class TokenizerTest {
     private String expression3 = "e + pi";
     private String expression4 = "123+sin23.5^5";
     private String expression5 = "123!";
+    private String expression6 = "-123 * 97.56";
+    private String expression7 = "123 * -97.56";
+    private String expression8 = "123 + -97.56";
 
     private ArrayList<Token> tokenizedExpression1;
     private ArrayList<Token> tokenizedExpression2;
     private ArrayList<Token> tokenizedExpression3;
+    private ArrayList<Token> tokenizedExpression6;
+    private ArrayList<Token> tokenizedExpression7;
+    private ArrayList<Token> tokenizedExpression8;
 
 
     void initializeExpressions() {
         tokenizedExpression1 = new ArrayList<>();
         tokenizedExpression2 = new ArrayList<>();
         tokenizedExpression3 = new ArrayList<>();
+        tokenizedExpression6 = new ArrayList<>();
+        tokenizedExpression7 = new ArrayList<>();
+        tokenizedExpression8 = new ArrayList<>();
 
         //12.5+5*13.67-23\99.123
         tokenizedExpression1.add(new Token("12.5", Token.Priorities.NUMBER));
@@ -54,6 +64,20 @@ class TokenizerTest {
         tokenizedExpression3.add(new Token("+", Token.Priorities.SUM));
         tokenizedExpression3.add(new Token("pi", Token.Priorities.NUMBER));
 
+        //-123 * 97.56
+        tokenizedExpression6.add(new Token("-123", Token.Priorities.NUMBER));
+        tokenizedExpression6.add(new Token("*", Token.Priorities.PRODUCT));
+        tokenizedExpression6.add(new Token("97.56", Token.Priorities.NUMBER));
+
+        //123 * -97.56
+        tokenizedExpression7.add(new Token("123", Token.Priorities.NUMBER));
+        tokenizedExpression7.add(new Token("*", Token.Priorities.PRODUCT));
+        tokenizedExpression7.add(new Token("-97.56", Token.Priorities.NUMBER));
+
+        //123 + -97.56
+        tokenizedExpression8.add(new Token("123", Token.Priorities.NUMBER));
+        tokenizedExpression8.add(new Token("+", Token.Priorities.SUM));
+        tokenizedExpression8.add(new Token("-97.56", Token.Priorities.NUMBER));
     }
 
     @Test
@@ -168,6 +192,15 @@ class TokenizerTest {
 
         assertThrows(IllegalArgumentException.class, () -> Tokenizer.tokenize(expression4));
         assertThrows(IllegalArgumentException.class, () -> Tokenizer.tokenize(expression5));
+
+        ArrayList<Token> ans6 = Tokenizer.tokenize(expression6);
+        assertTrue(compareLists(ans6, tokenizedExpression6));
+
+        ArrayList<Token> ans7 = Tokenizer.tokenize(expression7);
+        assertTrue(compareLists(ans7, tokenizedExpression7));
+
+        ArrayList<Token> ans8 = Tokenizer.tokenize(expression8);
+        assertTrue(compareLists(ans8, tokenizedExpression8));
 
     }
 }

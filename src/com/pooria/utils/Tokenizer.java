@@ -59,7 +59,13 @@ public class Tokenizer {
                 buffer = "";
                 switch (expression.charAt(i)) {
                     case '+' -> ans.add(new Token("+", Token.Priorities.SUM));
-                    case '-' -> ans.add(new Token("-", Token.Priorities.SUM));
+                    case '-' -> {
+                        if (ans.size() == 0 || !ans.get(ans.size() - 1).isNumber()) {
+                            isBufferNumeric = true;
+                            buffer += "-";
+                        } else
+                            ans.add(new Token("-", Token.Priorities.SUM));
+                    }
                     case '*' -> ans.add(new Token("*", Token.Priorities.PRODUCT));
                     case '/', '\\' -> ans.add(new Token("\\", Token.Priorities.PRODUCT));
                     case '^' -> ans.add(new Token("^", Token.Priorities.FUNCTION));
