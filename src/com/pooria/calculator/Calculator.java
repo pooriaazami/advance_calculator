@@ -23,13 +23,11 @@ public class Calculator {
                         ans.add(stack.pop());
                     }
                 } else {
-                    if (current.compareTo(stack.peek()) == 1 && stack.size() > 0) {
-                        while (current.compareTo(stack.peek()) == 1 && stack.size() > 0) {
-                            ans.add(stack.pop());
-                        }
-                    } else {
-                        stack.push(current);
+                    while (stack.size() > 0 && current.compareTo(stack.peek()) == 1) {
+                        ans.add(stack.pop());
                     }
+
+                    stack.push(current);
                 }
             }
         }
