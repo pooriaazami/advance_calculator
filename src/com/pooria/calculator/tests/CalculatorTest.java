@@ -1,5 +1,6 @@
-package com.pooria.calculator;
+package com.pooria.calculator.tests;
 
+import com.pooria.calculator.Calculator;
 import com.pooria.utils.Token;
 import com.pooria.utils.Tokenizer;
 import org.junit.jupiter.api.Test;
