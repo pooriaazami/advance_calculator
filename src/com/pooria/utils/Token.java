@@ -81,8 +81,14 @@ public class Token implements Comparable {
         Type(int value) {
             this.value = value;
         }
+    }
 
+    public double parseToDouble() {
+        if (!this.isNumber()) {
+            throw new IllegalArgumentException("You can not parse this token to double");
+        }
 
+        return Double.parseDouble(this.value);
     }
 
     @Override
