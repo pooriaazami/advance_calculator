@@ -148,6 +148,12 @@ class TokenizerTest {
         return true;
     }
 
+    void printArrayList(ArrayList l1) {
+        for (var v : l1) {
+            System.out.println(v);
+        }
+    }
+
     @Test
     void tokenize() {
         initializeExpressions();
@@ -162,5 +168,6 @@ class TokenizerTest {
 
         assertThrows(IllegalArgumentException.class, () -> Tokenizer.tokenize(expression4));
         assertThrows(IllegalArgumentException.class, () -> Tokenizer.tokenize(expression5));
+
     }
 }

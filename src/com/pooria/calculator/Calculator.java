@@ -18,12 +18,18 @@ public class Calculator {
             if (current.isNumber()) {
                 ans.add(current);
             } else {
-                if (current.isRightParenthesis()) {
-                    while (!stack.peek().isLeftParenthesis() && stack.size() > 0) {
+                if (current.isLeftParenthesis())
+                    stack.add(current);
+                else if (current.isRightParenthesis()) {
+                    while (true) {
+                        if (stack.peek().isLeftParenthesis())
+                            break;
+
                         ans.add(stack.pop());
                     }
+                    stack.pop();
                 } else {
-                    while (stack.size() > 0 && current.compareTo(stack.peek()) == 1) {
+                    while (stack.size() > 0 && current.compareTo(stack.peek()) < 1) {
                         ans.add(stack.pop());
                     }
 
